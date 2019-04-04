@@ -74,3 +74,9 @@ psql -d news -f newsdata.sql
  python3 LogsAnalysis.py
  ```
  Compare the "LogsAnalysis.txt" in my repo to the one created in your "vagrant" directory".
+ 
+ ### Exit Vagrant
+ Run the following command to exit vagrant,
+ ```
+ exit
+ ```
