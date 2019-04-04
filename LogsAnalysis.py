@@ -2,7 +2,7 @@ import psychopg2
 
 db = psycopg2.connect("dbname=news")
 c = db.cursor()
-c.execute('select path, count(*) as num from log group by oath order by num desc limit 3 offset 1;')
+c.execute("select articles.title, count(*) as views from log, articles where log.status='200 OK' and articles.slug = substr(log.path, 10) group by articles.title order by views desc limit 3;")
 results = cursor.fetchall()
 print results
 db.close()
