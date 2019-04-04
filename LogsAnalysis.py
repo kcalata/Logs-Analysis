@@ -25,3 +25,16 @@ order by views desc;""")
 results = c.fetchall()
 print results
 db.close()
+
+db = psycopg2.connect("dbname=news")
+c = db.cursor()
+c.execute()"""select errors.date,
+errors.err/errors.total as percentage
+from (select cast(time as date) as date,
+count(*) as total,
+cast(sum(cast(status != '200 OK' as int)) as float) as err
+from log group by date) as errors
+where errors.err/errors.total > 0.01;""")
+results = c.fetchall()
+print results
+db.close()
